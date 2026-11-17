@@ -1,0 +1,1 @@
+Clone https://github.com/FoundationAgents/OpenManus into workspace/golden-01/OpenManus. In that clone, find every place an LLM client is constructed, trace how tool_choice travels from config.toml to the API call, and write it up as a short Markdown doc at workspace/golden-01/llm-trace.md. Cite code as path:line, with paths relative to the clone root (for example app/llm.py:216).
