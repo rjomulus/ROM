@@ -1,0 +1,23 @@
+# DeepSeek through its OpenAI-compatible API (no code changes needed).
+# Copy to config/config.toml and put your key in api_key.
+#
+# Model ids per DeepSeek's docs (read Nov 17 2026): deepseek-flash (vision, tool calls)
+# and deepseek-v4-pro (tool calls, no vision). Both: 1M context. The old names
+# deepseek-chat and deepseek-reasoner were scheduled for retirement on Jul 24 2026.
+# Both models think by default; not yet tested with ROM's multi-turn tool loop.
+
+# Global LLM configuration
+[llm]
+model = "deepseek-v4-pro"                  # Strongest DeepSeek model; deepseek-flash is cheaper
+base_url = "https://api.deepseek.com"      # DeepSeek's OpenAI-compatible endpoint
+api_key = "YOUR_DEEPSEEK_API_KEY"
+max_tokens = 16384
+temperature = 0.0
+
+# Vision model (deepseek-v4-pro has no vision, so screenshots go to flash)
+[llm.vision]
+model = "deepseek-flash"
+base_url = "https://api.deepseek.com"
+api_key = "YOUR_DEEPSEEK_API_KEY"
+max_tokens = 16384
+temperature = 0.0

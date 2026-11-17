@@ -39,6 +39,12 @@ MULTIMODAL_MODELS = [
     "claude-3-opus-20240229",
     "claude-3-sonnet-20240229",
     "claude-3-haiku-20240307",
+    # ROM: current models that accept images, so screenshots reach them
+    "claude-opus-5-5",
+    "claude-sonnet-5-5",
+    "claude-haiku-5-5",
+    "deepseek-flash",
+    "qwen3-vl:8b",
 ]
 
 

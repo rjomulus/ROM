@@ -1,16 +1,25 @@
+# Claude through Anthropic's OpenAI-compatible endpoint (no code changes needed).
+# Copy to config/config.toml and put your key in api_key.
+#
+# Known limits of this endpoint for an agent loop:
+#   - Claude 5 models reject temperature below 1, so keep temperature = 1.0.
+#   - No prompt caching here. Native Anthropic calls (with caching) come with the
+#     LiteLLM routing layer later (build brief, Phase 3).
+#   - Opus 5.5 and Sonnet 5.5 reject forced tool use; ROM's agents use
+#     tool_choice = auto, so this doesn't bite today.
+
 # Global LLM configuration
 [llm]
-model = "claude-3-7-sonnet-latest"        # The LLM model to use
-base_url = "https://api.anthropic.com/v1/"  # API endpoint URL
-api_key = "YOUR_API_KEY"                    # Your API key
-max_tokens = 8192                           # Maximum number of tokens in the response
-temperature = 0.0                           # Controls randomness
+model = "claude-sonnet-5-5"                 # Day-to-day agent model; use claude-opus-5-5 for hard tasks
+base_url = "https://api.anthropic.com/v1/"  # Anthropic's OpenAI-compatible endpoint
+api_key = "YOUR_ANTHROPIC_API_KEY"          # A workspace-scoped key from the Claude Console
+max_tokens = 16384                          # Maximum number of tokens in the response
+temperature = 1.0                           # Must be 1.0 for Claude 5 on this endpoint
 
-
-# Optional configuration for specific LLM models
+# Vision model (reads browser screenshots)
 [llm.vision]
-model = "claude-3-7-sonnet-20250219"        # The vision model to use
-base_url = "https://api.anthropic.com/v1/"  # API endpoint URL for vision model
-api_key = "YOUR_API_KEY"                    # Your API key for vision model
-max_tokens = 8192                           # Maximum number of tokens in the response
-temperature = 0.0                           # Controls randomness for vision model
+model = "claude-sonnet-5-5"
+base_url = "https://api.anthropic.com/v1/"
+api_key = "YOUR_ANTHROPIC_API_KEY"
+max_tokens = 16384
+temperature = 1.0

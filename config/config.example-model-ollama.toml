@@ -1,17 +1,26 @@
+# Local models through Ollama's OpenAI-compatible endpoint, sized for a 16 GB GPU
+# (RTX 5080). Copy to config/config.toml.
+#
+#   ollama pull gpt-oss:20b     # ~14 GB, 131k context, tool calling: the agent model
+#   ollama pull qwen3-vl:8b     # ~6 GB: reads screenshots
+#
+# Only one stays in VRAM at a time; Ollama swaps them. Set OLLAMA_KEEP_ALIVE=24h
+# to keep the agent model loaded. For LM Studio, use base_url http://localhost:1234/v1.
+
 # Global LLM configuration
 [llm] #OLLAMA:
 api_type = 'ollama'
-model = "llama3.2"                                                 # The LLM model to use
+model = "gpt-oss:20b"                                              # The LLM model to use
 base_url = "http://localhost:11434/v1"                             # API endpoint URL
-api_key = "ollama"                                                 # Your API key
-max_tokens = 4096                                                  # Maximum number of tokens in the response
+api_key = "ollama"                                                 # Any non-empty value
+max_tokens = 8192                                                  # Maximum number of tokens in the response
 temperature = 0.0                                                  # Controls randomness
 
 
 [llm.vision] #OLLAMA VISION:
 api_type = 'ollama'
-model = "llama3.2-vision"                                          # The vision model to use
+model = "qwen3-vl:8b"                                              # The vision model to use
 base_url = "http://localhost:11434/v1"                             # API endpoint URL for vision model
-api_key = "ollama"                                                 # Your API key for vision model
+api_key = "ollama"                                                 # Any non-empty value
 max_tokens = 4096                                                  # Maximum number of tokens in the response
 temperature = 0.0                                                  # Controls randomness for vision model
