@@ -200,3 +200,6 @@ cython_debug/
 
 # node
 node_modules
+
+# ROM: local config holds API keys; never commit it
+config/config.toml
